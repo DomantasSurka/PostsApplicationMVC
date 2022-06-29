@@ -1,0 +1,77 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+tbody tr {
+    cursor: pointer;
+    transition:0.1s;
+}
+
+tbody tr:hover{
+    background-color:#eee;
+}
+
+.btn-back {
+    border: 1px solid #000;
+}
+
+div.btn-div {
+    display: inline-block;
+}
+
+.center{
+    text-align: center;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+a.btn-pagination {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding: 10px;
+}
+
+.pagination a.btn-pagination:first-child {
+    border-left: 1px solid #ddd;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.pagination a.btn-pagination:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+a.btn-pagination {
+    color: #000;
+    text-decoration: none;
+}
+
+p#error-message {
+    color: red;
+    font-size: 13px;
+}
+
+footer{
+    padding-top:10px;
+}

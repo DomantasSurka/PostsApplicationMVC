@@ -1,0 +1,49 @@
+﻿@model Project.Models.Post
+
+@{
+    ViewData["Title"] = "Create post";
+}
+
+<h1>Create new post</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserID" class="control-label"></label>
+                <input asp-for="UserID" class="form-control" />
+                <span asp-validation-for="UserID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ID" class="control-label"></label>
+                <input asp-for="ID" class="form-control" />
+                <span asp-validation-for="ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Body" class="control-label"></label>
+                <input asp-for="Body" class="form-control" />
+                <span asp-validation-for="Body" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group btn-div">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            <div class="btn-div">
+                <a class="btn btn-back" asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

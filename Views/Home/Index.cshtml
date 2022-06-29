@@ -1,0 +1,77 @@
+﻿@model PaginatedList<Project.Models.Post>
+
+@{
+    ViewData["Title"] = "Posts list";
+}
+
+<h1>List of posts</h1>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary">Insert</a>
+</p>
+
+<hr />
+<form asp-action="Index" class="search-form" method="get">
+        Filter by UserID: <input id="search-input" type="number" name="filter" value="@ViewData["CurrentFilter"]"/>
+        <input type="submit" value="Search" class="btn btn-primary" onClick="return checkIfNotEmpty()" />
+        <a asp-action="Index" class="btn btn-back">Remove Filter</a>
+</form>
+<p id="error-message"></p>
+<hr />
+
+@if (Model.Count != 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-action="Index" asp-route-sortBy="@ViewData["UserIDSortParm"]" asp-route-filter ="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model => model.First().UserID)</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortBy="@ViewData["IDSortParm"]" asp-route-filter ="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model => model.First().ID)</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortBy="@ViewData["TitleSortParm"]" asp-route-filter ="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model => model.First().Title)</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortBy="@ViewData["BodySortParm"]" asp-route-filter ="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model => model.First().Body)</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr onclick="location.href = '@Url.Action("Details", new {id=item.ID})'">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Body)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p>Page @Model.PageIndex of @Model.TotalPages</p>
+    <div class="pagination">
+    @for (int i = 1; i <= Model.TotalPages; i++)
+    {
+        <a asp-action="Index" asp-route-sortBy="@ViewData["CurrentSort"]"
+        asp-route-page="@(i)" asp-route-filter="@ViewData["CurrentFilter"]" class="btn-pagination">
+        @(i)
+        </a>
+    }
+    </div>
+}
+
+else
+{
+    <p>No data available.</p>
+}
